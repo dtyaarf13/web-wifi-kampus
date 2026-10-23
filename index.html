@@ -58,11 +58,11 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
   <div class="statusbar"><span></span><div style="display:flex;align-items:center;gap:14px"><button id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Ganti mode tampilan" style="border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--navy);padding:7px 12px;font-size:13px;font-weight:700">🌙 Mode gelap</button><span class="statusicons"></span></div></div>
   
   <section class="page active" id="login">
-    <h1>WiFi Kampus</h1><p class="subtitle">Akses jaringan kampus lebih mudah</p>
+    <h1>WIFI KAMPUS UNIRA</h1><p class="subtitle">Akses jaringan kampus lebih mudah</p>
     <div class="hero"><div class="wifi-logo"><div class="logo-circle">
     <img src="unira.png"
          alt="Logo Universitas Madura"
-         class="logo-unira"></div></div><h2>WiFi Kampus</h2><p>Koneksi lebih mudah, akses lebih cepat</p></div>
+         class="logo-unira"></div></div><h2>WIFI KAMPUS UNIRA</h2><p>Koneksi lebih mudah, akses lebih cepat</p></div>
     <form id="loginForm">
       <div class="field"><label>Email / NIM</label><input id="loginId" placeholder="Masukkan NIM atau email" required></div>
       <div class="field"><label>Kata sandi</label><input id="loginPass" type="password" placeholder="Masukkan kata sandi" required></div>
@@ -70,7 +70,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
     </form>
     <div style="text-align:center"><button class="linkbtn" onclick="showPage('register')">Belum punya akun? Daftar</button></div>
     <div class="notice"><b style="color:var(--navy)">Prototype demo</b><p>Tampilan contoh. Aplikasi sebenarnya menggunakan akun kampus resmi.</p></div>
-    <div class="footer">WiFi Kampus • 1/7</div>
   </section>
 
   <section class="page" id="home">
@@ -83,7 +82,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
     </div>
     <div class="card" style="margin-top:44px;padding:32px"><h3>Ada kendala koneksi?</h3><p>Laporkan masalah agar tim kampus bisa menindaklanjuti.</p></div>
     <button class="btn" onclick="showPage('report')">Lapor Gangguan</button>
-    <div class="footer">WiFi Kampus • 2/7</div>
   </section>
 
   <section class="page" id="map">
@@ -95,7 +93,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
     <div class="location"><span class="signal">⌁</span><div><h3>Gedung A</h3><p>Sinyal kuat</p></div></div>
     <div class="location"><span class="signal" style="background:#fff4e9;color:#f97316">⌁</span><div><h3>Perpustakaan</h3><p>Sinyal sedang</p></div></div>
     <div class="location"><span class="signal">⌁</span><div><h3>Gedung B</h3><p>Sinyal kuat</p></div></div>
-    <div class="footer">WiFi Kampus • 3/7</div>
   </section>
 
   <section class="page" id="speed">
@@ -109,7 +106,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
     <div class="card ping"><div><b style="color:var(--muted)">PING</b><h3 id="pingNum" style="font-size:24px;margin-top:12px">18 ms</h3></div><p>Semakin kecil ping, biasanya respons jaringan makin cepat.</p></div>
     <button class="btn" onclick="runSpeed()">Uji Kecepatan Lagi</button>
     <div class="notice"><b style="color:var(--navy)">Catatan</b><p>Angka di layar ini hanya contoh desain. Untuk hasil Mbps nyata, tombol perlu dihubungkan ke layanan pengujian kecepatan atau implementasi aplikasi.</p></div>
-    <div class="footer">WiFi Kampus • 4/7</div>
   </section>
 
   <section class="page" id="report">
@@ -122,7 +118,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
       <button class="btn" type="submit">Kirim Laporan</button>
     </form>
     <div id="reportResult" class="report-success hidden"><h3>✓ &nbsp; Laporan berhasil disiapkan</h3><p>Dalam prototype ini laporan disimpan di perangkat dan belum dikirim ke pengelola kampus sungguhan.</p></div>
-    <div class="footer">WiFi Kampus • 5/7</div>
   </section>
 
   <section class="page" id="history">
@@ -130,7 +125,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
     <div class="card soft history-top" style="border:0;border-radius:12px"><div><b style="color:var(--muted);font-size:14px">TOTAL PENGUJIAN</b><h3 style="color:var(--blue);margin-top:12px"><span id="historyCount">4</span> pengujian tersimpan</h3></div><div><button class="linkbtn" onclick="downloadHistory()">↓ Download</button><label class="linkbtn" style="cursor:pointer">↑ Upload<input id="historyUpload" type="file" accept=".json,.csv" hidden onchange="uploadHistory(event)"></label></div></div>
     <h2>Pengujian Terbaru</h2><div id="historyList"></div>
     <div class="card" style="border-radius:12px;color:var(--muted);font-size:14px">ⓘ &nbsp; Hasil di atas adalah data contoh untuk prototype.</div>
-    <div class="footer">WiFi Kampus • 6/7</div>
   </section>
 
   <section class="page" id="profile">
@@ -147,7 +141,6 @@ body[data-theme="dark"] .toast{background:#e7eefc;color:#101827}
     <div class="setting" onclick="toast('Pengaturan akun: fitur demo')"><span class="symbol" style="color:var(--blue)">⚙</span><div><b>Pengaturan Akun</b><p>Kata sandi dan keamanan</p></div></div>
     <div class="setting" onclick="toggleNotifications(this)"><span class="symbol">🔔</span><div><b>Notifikasi</b><p>Atur pemberitahuan aplikasi</p></div><span id="notifState" style="margin-left:auto;color:var(--green)">Aktif</span></div>
     <button class="btn secondary" onclick="logout()">Keluar</button>
-    <div class="footer">WiFi Kampus • 7/7</div>
   </section>
 
   <section class="page" id="register">

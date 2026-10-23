@@ -182,7 +182,7 @@ function editProfile(){document.getElementById('editForm').classList.toggle('hid
 function saveProfile(){[['Name','Nama Lengkap'],['Nim','NIM'],['Email','Email'],['Study','Program Studi']].forEach(([key])=>{const value=document.getElementById('edit'+key).value.trim();if(value)document.getElementById('show'+key).textContent=value});document.getElementById('avatar').textContent=document.getElementById('showName').textContent.split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();document.getElementById('editForm').classList.add('hidden');toast('Profil diperbarui pada tampilan demo.')}
 function changePhoto(e){const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{const a=document.getElementById('avatar');a.style.backgroundImage=`url(${reader.result})`;a.style.backgroundSize='cover';a.style.backgroundPosition='center';a.textContent=''};reader.readAsDataURL(f)}
 function toggleNotifications(el){const s=document.getElementById('notifState');s.textContent=s.textContent==='Aktif'?'Nonaktif':'Aktif';s.style.color=s.textContent==='Aktif'?'var(--green)':'var(--muted)'}
-function logout(){showPage('login');document.getElementById('loginPass').value='';toast('Anda keluar dari prototype demo.')}
+function logout(){showPage('login');document.getElementById('loginPass').value='';toast('Anda keluar dari wifi kampus.')}
 renderHistory();
 </script>
 </body>

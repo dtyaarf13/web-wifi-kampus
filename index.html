@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WiFi Kampus — Prototype</title>
+<style>
+:root{--blue:#2863ed;--navy:#17264f;--muted:#687d9c;--bg:#f5f8fc;--line:#dce5f1;--green:#13a653;--orange:#f97316}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:980px;margin:auto;min-height:100vh;padding:24px 28px 120px;position:relative}.statusbar{display:flex;justify-content:space-between;color:#111b32;font-size:14px;font-weight:700;margin:3px 0 36px}.statusicons{letter-spacing:5px}.page{display:none;animation:fade .18s ease}.page.active{display:block}@keyframes fade{from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:none}}h1{font-size:clamp(27px,4vw,38px);line-height:1.2;margin:0 0 22px;font-weight:800;color:#17264f}h2{font-size:23px;margin:30px 10px 16px}h3{margin:0 0 10px;font-size:19px}p{color:var(--muted);line-height:1.55}.subtitle{font-size:17px;margin:0 0 38px}.card{background:#fff;border:1.5px solid var(--line);border-radius:24px;padding:24px;margin:18px 0}.soft{background:#eef5ff;border-color:#d9e8ff}.green{background:#ecfcf4;border-color:#a8f5c8}.hero{background:var(--blue);color:#fff;border-radius:42px;text-align:center;padding:44px 24px 34px;margin:20px 0 60px}.wifi-logo{height:150px;width:150px;border-radius:50%;margin:0 auto 18px;background:#fff2;color:white;display:grid;place-items:center;font-size:65px}.hero h2{font-size:38px;margin:0 0 8px;color:#fff}.hero p{color:#fff;margin:0}.field{margin:0 8px 26px}.field label{display:block;font-size:18px;font-weight:650;margin:0 0 12px}.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;background:#fff;padding:22px 24px;color:var(--navy);outline:none}.field textarea{min-height:180px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2863ed18}.btn{border:0;border-radius:12px;padding:20px 22px;background:var(--blue);color:white;font-weight:750;font-size:19px;width:100%;margin:8px 0}.btn.secondary{background:#edf4ff;color:var(--blue);border:1px solid #bfd6ff}.linkbtn{background:none;border:0;color:var(--blue);font-weight:700;padding:16px}.notice{padding:22px;border:1px solid #c5dcff;border-radius:14px;background:#eff6ff;margin:24px 8px;color:var(--muted)}.status{display:flex;align-items:center;gap:22px;padding:28px 34px;border:1px solid #a8f5c8;background:#ecfcf4;border-radius:26px;margin:26px 0 40px}.check{height:68px;width:68px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:35px;flex-shrink:0}.status strong{display:block;color:var(--green);font-size:25px;margin-bottom:12px}.quickgrid,.metricgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.quick{border-radius:28px;padding:30px 18px;text-align:center;background:#fff;border:1px solid var(--line);min-height:215px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;color:var(--navy);font-weight:750;font-size:20px}.quick:first-child{background:#edf5ff;border:0}.quick .emoji{font-size:48px;background:#dceaff;border-radius:50%;width:95px;height:95px;display:grid;place-items:center}.quick small{font-size:14px;font-weight:400;color:var(--muted)}.map{height:470px;border-radius:78px;background:#e8f3e7;border:1px solid #c8d7c1;position:relative;overflow:hidden;margin:28px 0 44px}.road{height:7px;background:#fff;border-radius:9px;position:absolute;box-shadow:0 1px #cfddc9}.r1{width:105%;top:28%;left:-2%;transform:rotate(8deg)}.r2{width:105%;top:43%;left:-2%;transform:rotate(-10deg)}.r3{width:95%;top:75%;left:2%;transform:rotate(-6deg)}.r4{height:110%;width:7px;top:-4%;left:25%;transform:rotate(-13deg)}.r5{height:110%;width:7px;top:-4%;left:62%;transform:rotate(12deg)}.pin{position:absolute;width:54px;height:54px;border-radius:50%;background:var(--blue);border:10px solid var(--blue);box-shadow:inset 0 0 0 9px white;cursor:pointer}.pin:nth-of-type(6){left:15%;top:20%}.pin:nth-of-type(7){left:76%;top:38%}.pin:nth-of-type(8){left:37%;top:68%}.pin:nth-of-type(9){left:79%;top:78%}.location{display:flex;align-items:center;gap:22px;padding:22px 26px;background:#fff;border:1px solid var(--line);border-radius:13px;margin:18px 0}.location .signal{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#e9fff3;color:var(--green);font-size:25px}.location p{margin:4px 0 0}.gauge{height:360px;border-radius:56px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:28px 10px;position:relative;text-align:center}.gauge label{font-weight:700;color:var(--muted)}.dial{height:300px;width:300px;max-width:75vw;max-height:75vw;border-radius:50%;background:#dceaff;border:25px solid #eef5ff;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:28px}.dial strong{font-size:46px;color:var(--blue)}.dial span{font-weight:700;color:var(--muted);font-size:18px}.gauge small{position:absolute;bottom:30px;color:var(--muted)}.metric{padding:26px 28px;border:1px solid var(--line);border-radius:23px;background:#fff}.metric strong{display:block;font-size:25px;margin-top:12px}.metric small{color:var(--muted)}.metric .ico{font-size:28px}.ping{display:flex;align-items:center;justify-content:space-between;gap:18px}.history-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.history-card{padding:24px 28px}.history-card time{font-size:14px;color:var(--muted)}.history-card h3{margin-top:16px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}.stat{padding:14px;border-radius:9px;background:#eef5ff}.stat:nth-child(2){background:#eafcf4}.stat:nth-child(3){background:#fff6ec}.stat span{display:block;font-size:13px;font-weight:750;color:var(--blue);margin-bottom:8px}.stat:nth-child(2) span{color:var(--green)}.stat:nth-child(3) span{color:#ea580c}.stat b{font-size:17px}.profilehero{text-align:center;padding:26px}.avatar{width:154px;height:154px;border-radius:50%;background:#dceaff;color:var(--blue);font-size:40px;font-weight:800;display:grid;place-items:center;margin:auto}.profilehero p{margin:12px 0 0}.info{padding:16px 28px;background:#fff;border:1.5px solid var(--line);border-radius:12px;margin:10px 0}.info small{color:var(--muted);font-size:14px}.info b{display:block;margin-top:16px;font-size:17px;overflow-wrap:anywhere}.setting{display:flex;align-items:center;gap:24px;padding:18px 24px;background:#fff;border:1.5px solid var(--line);border-radius:12px;margin:14px 0;cursor:pointer}.setting .symbol{font-size:28px}.setting p{margin:5px 0 0;font-size:14px}.bottomnav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(980px,100%);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 22px 18px;background:#f5f8fcf5;border-top:1px solid #e1e9f3;backdrop-filter:blur(10px)}.navitem{background:none;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;padding:0}.navitem .navicon{font-size:28px;color:var(--blue);height:34px}.navitem.active{color:var(--blue);font-weight:700}.footer{text-align:center;color:var(--muted);margin:58px 0 8px;font-size:14px}.hidden{display:none!important}.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#14213d;color:white;padding:12px 18px;border-radius:12px;z-index:30;box-shadow:0 8px 25px #0002;max-width:90%;text-align:center}.report-success{padding:28px;background:#ecfcf4;border:1px solid #a8f5c8;border-radius:24px;color:var(--green);margin:28px 0}.report-success p{font-size:14px}.profile-photo{display:none}
+@media(max-width:600px){.app{padding:18px 18px 115px}.statusbar{margin-bottom:30px}.subtitle{margin-bottom:28px}.card{padding:20px}.hero{border-radius:30px;margin-bottom:42px}.hero h2{font-size:30px}.status{padding:22px;gap:15px}.status strong{font-size:21px}.check{width:56px;height:56px}.quickgrid,.metricgrid{gap:12px}.quick{min-height:175px;padding:18px 8px;font-size:17px}.quick .emoji{width:70px;height:70px;font-size:36px}.map{height:350px;border-radius:50px}.stats{gap:8px}.stat{padding:10px}.stat b{font-size:15px}.stat span{font-size:11px}.gauge{height:330px}.dial{width:260px;height:260px}.bottomnav{padding-left:10px;padding-right:10px}.history-card{padding:20px}.ping{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="statusbar"><span></span><span class="statusicons"</span></div>
+
+  <section class="page active" id="login">
+    <h1>WiFi Kampus</h1><p class="subtitle">Akses jaringan kampus lebih mudah</p>
+    <div class="hero"><div class="wifi-logo">⌁</div><h2>WiFi Kampus</h2><p>Koneksi lebih mudah, akses lebih cepat</p></div>
+    <form id="loginForm">
+      <div class="field"><label>Email / NIM</label><input id="loginId" placeholder="Masukkan NIM atau email" required></div>
+      <div class="field"><label>Kata sandi</label><input id="loginPass" type="password" placeholder="Masukkan kata sandi" required></div>
+      <button class="btn" type="submit">Masuk</button>
+    </form>
+    <div style="text-align:center"><button class="linkbtn" onclick="showPage('register')">Belum punya akun? Daftar</button></div>
+    <div class="notice"><b style="color:var(--navy)">Prototype demo</b><p>Tampilan contoh. Aplikasi sebenarnya menggunakan akun kampus resmi.</p></div>
+    <div class="footer">WiFi Kampus • 1/7</div>
+  </section>
+
+  <section class="page" id="home">
+    <h1>Halo, Mahasiswa!</h1><p class="subtitle">Pantau koneksi Wi-Fi kampus dari satu tempat</p>
+    <div class="status"><div class="check">✓</div><div><strong>Jaringan Normal</strong><b>Wi-Fi Kampus Utama</b><p>Status contoh • Sinyal kuat</p></div></div>
+    <h2>Akses cepat</h2>
+    <div class="quickgrid">
+      <button class="quick" onclick="showPage('map')"><span class="emoji">📍</span>Peta Hotspot<small>Cari titik Wi-Fi</small></button>
+      <button class="quick" onclick="showPage('speed')"><span class="emoji" style="background:#dcfce7">⌁</span>Status Wi-Fi<small>Periksa koneksi</small></button>
+    </div>
+    <div class="card" style="margin-top:44px;padding:32px"><h3>Ada kendala koneksi?</h3><p>Laporkan masalah agar tim kampus bisa menindaklanjuti.</p></div>
+    <button class="btn" onclick="showPage('report')">Lapor Gangguan</button>
+    <div class="footer">WiFi Kampus • 2/7</div>
+  </section>
+
+  <section class="page" id="map">
+    <h1>Peta Hotspot</h1><p class="subtitle">Temukan lokasi akses Wi-Fi di area kampus</p>
+    <div class="map" aria-label="Ilustrasi peta hotspot"><div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><div class="road r4"></div><div class="road r5"></div>
+      <button class="pin" style="left:15%;top:20%" onclick="toast('Gedung A — Sinyal kuat')"></button><button class="pin" style="left:76%;top:38%" onclick="toast('Perpustakaan — Sinyal sedang')"></button><button class="pin" style="left:37%;top:68%" onclick="toast('Gedung B — Sinyal kuat')"></button><button class="pin" style="left:79%;top:78%" onclick="toast('Area Kantin — Sinyal sedang')"></button>
+    </div>
+    <h2>Lokasi tersedia</h2>
+    <div class="location"><span class="signal">⌁</span><div><h3>Gedung A</h3><p>Sinyal kuat</p></div></div>
+    <div class="location"><span class="signal" style="background:#fff4e9;color:#f97316">⌁</span><div><h3>Perpustakaan</h3><p>Sinyal sedang</p></div></div>
+    <div class="location"><span class="signal">⌁</span><div><h3>Gedung B</h3><p>Sinyal kuat</p></div></div>
+    <div class="footer">WiFi Kampus • 3/7</div>
+  </section>
+
+  <section class="page" id="speed">
+    <h1>Cek Koneksi Wi-Fi</h1><p class="subtitle">Uji kecepatan download dan upload jaringan</p>
+    <div class="status"><div class="check">✓</div><div><strong>Wi-Fi Terhubung</strong><p>Jaringan Kampus Utama • Status simulasi</p></div></div>
+    <div class="card gauge"><label>HASIL TES KECEPATAN</label><div class="dial"><strong id="speedNum">42.8</strong><span>Mbps</span></div><small>Contoh hasil • bukan pengukuran langsung</small></div>
+    <div class="metricgrid">
+      <div class="metric"><span class="ico" style="color:var(--blue)">↓</span><small style="display:block;font-weight:700">DOWNLOAD</small><strong id="downloadNum">42.8 Mbps</strong><small>Kecepatan menerima data</small></div>
+      <div class="metric"><span class="ico" style="color:var(--green)">↑</span><small style="display:block;font-weight:700">UPLOAD</small><strong id="uploadNum">18.6 Mbps</strong><small>Kecepatan mengirim data</small></div>
+    </div>
+    <div class="card ping"><div><b style="color:var(--muted)">PING</b><h3 id="pingNum" style="font-size:24px;margin-top:12px">18 ms</h3></div><p>Semakin kecil ping, biasanya respons jaringan makin cepat.</p></div>
+    <button class="btn" onclick="runSpeed()">Uji Kecepatan Lagi</button>
+    <div class="notice"><b style="color:var(--navy)">Catatan</b><p>Angka di layar ini hanya contoh desain. Untuk hasil Mbps nyata, tombol perlu dihubungkan ke layanan pengujian kecepatan atau implementasi aplikasi.</p></div>
+    <div class="footer">WiFi Kampus • 4/7</div>
+  </section>
+
+  <section class="page" id="report">
+    <h1>Lapor Gangguan</h1><p class="subtitle">Beri tahu pengelola jika jaringan bermasalah</p>
+    <form id="reportForm">
+      <div class="field"><label>Jenis gangguan</label><select id="issueType"><option>Wi-Fi tidak terhubung</option><option>Internet lambat</option><option>Sinyal lemah</option><option>Tidak bisa login</option><option>Lainnya</option></select></div>
+      <div class="field"><label>Lokasi</label><input id="issueLocation" placeholder="Pilih gedung atau area kampus" required></div>
+      <div class="field"><label>Deskripsi masalah</label><textarea id="issueDescription" placeholder="Jelaskan masalah yang dialami..." required></textarea></div>
+      <div class="field"><label>Lampiran foto (opsional)</label><input id="issuePhoto" type="file" accept="image/*" style="padding:18px"></div>
+      <button class="btn" type="submit">Kirim Laporan</button>
+    </form>
+    <div id="reportResult" class="report-success hidden"><h3>✓ &nbsp; Laporan berhasil disiapkan</h3><p>Dalam prototype ini laporan disimpan di perangkat dan belum dikirim ke pengelola kampus sungguhan.</p></div>
+    <div class="footer">WiFi Kampus • 5/7</div>
+  </section>
+
+  <section class="page" id="history">
+    <h1>Riwayat Pengujian Wi-Fi</h1><p class="subtitle">Lihat hasil tes koneksi yang pernah dilakukan</p>
+    <div class="card soft history-top" style="border:0;border-radius:12px"><div><b style="color:var(--muted);font-size:14px">TOTAL PENGUJIAN</b><h3 style="color:var(--blue);margin-top:12px"><span id="historyCount">4</span> pengujian tersimpan</h3></div><div><button class="linkbtn" onclick="downloadHistory()">↓ Download</button><label class="linkbtn" style="cursor:pointer">↑ Upload<input id="historyUpload" type="file" accept=".json,.csv" hidden onchange="uploadHistory(event)"></label></div></div>
+    <h2>Pengujian Terbaru</h2><div id="historyList"></div>
+    <div class="card" style="border-radius:12px;color:var(--muted);font-size:14px">ⓘ &nbsp; Hasil di atas adalah data contoh untuk prototype.</div>
+    <div class="footer">WiFi Kampus • 6/7</div>
+  </section>
+
+  <section class="page" id="profile">
+    <h1>Profil Mahasiswa</h1><p class="subtitle">Kelola informasi akun dan preferensi aplikasi</p>
+    <div class="card profilehero"><div class="avatar" id="avatar">AR</div><p>Foto profil mahasiswa</p><label class="linkbtn" style="display:inline-block;cursor:pointer">Ketuk untuk mengganti foto<input id="profilePhoto" class="profile-photo" type="file" accept="image/*" onchange="changePhoto(event)"></label></div>
+    <h2>Informasi Pribadi</h2>
+    <div class="info"><small>Nama Lengkap</small><b id="showName">Aditya Arif Riyan Saputra</b></div>
+    <div class="info"><small>NIM</small><b id="showNim">2025520044</b></div>
+    <div class="info"><small>Email</small><b id="showEmail">aditya.mahasiswa@kampus.ac.id</b></div>
+    <div class="info"><small>Program Studi</small><b id="showStudy">Informatika</b></div>
+    <button class="btn" onclick="editProfile()">✎ &nbsp; Edit Profil</button>
+    <div id="editForm" class="card hidden"><h3>Edit Informasi</h3><div class="field"><label>Nama Lengkap</label><input id="editName" value="Aditya Arif Riyan Saputra"></div><div class="field"><label>NIM</label><input id="editNim" value="2025520044"></div><div class="field"><label>Email</label><input id="editEmail" value="aditya.mahasiswa@kampus.ac.id"></div><div class="field"><label>Program Studi</label><input id="editStudy" value="Informatika"></div><button class="btn" onclick="saveProfile()">Simpan Perubahan</button></div>
+    <h2>Pengaturan</h2>
+    <div class="setting" onclick="toast('Pengaturan akun: fitur demo')"><span class="symbol" style="color:var(--blue)">⚙</span><div><b>Pengaturan Akun</b><p>Kata sandi dan keamanan</p></div></div>
+    <div class="setting" onclick="toggleNotifications(this)"><span class="symbol">🔔</span><div><b>Notifikasi</b><p>Atur pemberitahuan aplikasi</p></div><span id="notifState" style="margin-left:auto;color:var(--green)">Aktif</span></div>
+    <button class="btn secondary" onclick="logout()">Keluar</button>
+    <div class="footer">WiFi Kampus • 7/7</div>
+  </section>
+
+  <section class="page" id="register">
+    <h1>Daftar Akun</h1><p class="subtitle">Buat akun prototype WiFi Kampus</p>
+    <form id="registerForm"><div class="field"><label>Nama Lengkap</label><input id="regName" required placeholder="Nama lengkap"></div><div class="field"><label>NIM / Email</label><input id="regId" required placeholder="Masukkan NIM atau email"></div><div class="field"><label>Kata sandi</label><input id="regPass" type="password" required minlength="4" placeholder="Minimal 4 karakter"></div><button class="btn" type="submit">Daftar</button></form>
+    <div style="text-align:center"><button class="linkbtn" onclick="showPage('login')">Kembali ke Masuk</button></div>
+  </section>
+</div>
+
+<nav class="bottomnav hidden" id="bottomnav" aria-label="Navigasi utama">
+  <button class="navitem" data-page="home" onclick="showPage('home')"><span class="navicon">⌂</span>Beranda</button>
+  <button class="navitem" data-page="map" onclick="showPage('map')"><span class="navicon">📍</span>Peta</button>
+  <button class="navitem" data-page="history" onclick="showPage('history')"><span class="navicon">●</span>Riwayat</button>
+  <button class="navitem" data-page="profile" onclick="showPage('profile')"><span class="navicon">●</span>Profil</button>
+</nav>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+const pages=['login','home','map','speed','report','history','profile','register'];
+let historyData=[
+ {date:'19 Okt 2026 • 10:32',place:'Perpustakaan Kampus',download:42.8,upload:18.6,ping:18},
+ {date:'18 Okt 2026 • 14:15',place:'Gedung A — Lantai 2',download:36.2,upload:12.4,ping:24},
+ {date:'17 Okt 2026 • 09:05',place:'Area Kantin',download:28.5,upload:9.8,ping:31},
+ {date:'16 Okt 2026 • 13:40',place:'Gedung B — Ruang Lab',download:51.3,upload:22.1,ping:12}
+];
+function showPage(id){pages.forEach(p=>document.getElementById(p).classList.toggle('active',p===id));const nav=document.getElementById('bottomnav');nav.classList.toggle('hidden',['login','register'].includes(id));document.querySelectorAll('.navitem').forEach(n=>n.classList.toggle('active',n.dataset.page===id));if(id==='history')renderHistory();window.scrollTo({top:0,behavior:'smooth'})}
+function toast(message){const el=document.getElementById('toast');el.textContent=message;el.classList.remove('hidden');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.add('hidden'),2600)}
+document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();if(!document.getElementById('loginId').value.trim()||!document.getElementById('loginPass').value){toast('Isi NIM/email dan kata sandi terlebih dahulu.');return}showPage('home');toast('Berhasil masuk ke prototype demo.')});
+document.getElementById('registerForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('regName').value.trim(),id=document.getElementById('regId').value.trim();document.getElementById('showName').textContent=name;document.getElementById('showNim').textContent=id;document.getElementById('showEmail').textContent=id.includes('@')?id:'Belum diisi';document.getElementById('avatar').textContent=name.split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();showPage('home');toast('Akun demo dibuat. Tidak ada data yang dikirim ke server.')});
+function runSpeed(){const d=(20+Math.random()*45),u=(5+Math.random()*20),p=Math.floor(10+Math.random()*35);document.getElementById('speedNum').textContent=d.toFixed(1);document.getElementById('downloadNum').textContent=d.toFixed(1)+' Mbps';document.getElementById('uploadNum').textContent=u.toFixed(1)+' Mbps';document.getElementById('pingNum').textContent=p+' ms';historyData.unshift({date:new Date().toLocaleString('id-ID'),place:'Pengujian perangkat ini',download:+d.toFixed(1),upload:+u.toFixed(1),ping:p});toast('Tes simulasi selesai. Angka bukan hasil pengukuran internet nyata.')}
+document.getElementById('reportForm').addEventListener('submit',e=>{e.preventDefault();const report={jenis:document.getElementById('issueType').value,lokasi:document.getElementById('issueLocation').value,deskripsi:document.getElementById('issueDescription').value,waktu:new Date().toLocaleString('id-ID')};let arr=[];try{arr=JSON.parse(localStorage.getItem('wifiReports')||'[]')}catch(err){}arr.push(report);try{localStorage.setItem('wifiReports',JSON.stringify(arr))}catch(err){}document.getElementById('reportResult').classList.remove('hidden');toast('Laporan tersimpan pada perangkat (demo).')});
+function renderHistory(){document.getElementById('historyCount').textContent=historyData.length;document.getElementById('historyList').innerHTML=historyData.map(h=>`<div class="card history-card"><time>${escapeHTML(h.date)}</time><h3>${escapeHTML(h.place)}</h3><div class="stats"><div class="stat"><span>↓ DOWNLOAD</span><b>${Number(h.download).toFixed(1)} Mbps</b></div><div class="stat"><span>↑ UPLOAD</span><b>${Number(h.upload).toFixed(1)} Mbps</b></div><div class="stat"><span>PING</span><b>${Number(h.ping)} ms</b></div></div></div>`).join('')}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function downloadHistory(){const blob=new Blob([JSON.stringify(historyData,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='riwayat-wifi-kampus.json';a.click();URL.revokeObjectURL(url);toast('File riwayat diunduh.')}
+function uploadHistory(event){const file=event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data))throw Error();historyData=data.filter(x=>x.date&&x.place&&Number.isFinite(Number(x.download))&&Number.isFinite(Number(x.upload))&&Number.isFinite(Number(x.ping)));renderHistory();toast('Riwayat berhasil diimpor.')}catch(err){toast('File tidak valid. Gunakan file JSON hasil ekspor WiFi Kampus.')}};reader.readAsText(file)}
+function editProfile(){document.getElementById('editForm').classList.toggle('hidden');document.getElementById('editName').value=document.getElementById('showName').textContent;document.getElementById('editNim').value=document.getElementById('showNim').textContent;document.getElementById('editEmail').value=document.getElementById('showEmail').textContent;document.getElementById('editStudy').value=document.getElementById('showStudy').textContent}
+function saveProfile(){[['Name','Nama Lengkap'],['Nim','NIM'],['Email','Email'],['Study','Program Studi']].forEach(([key])=>{const value=document.getElementById('edit'+key).value.trim();if(value)document.getElementById('show'+key).textContent=value});document.getElementById('avatar').textContent=document.getElementById('showName').textContent.split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();document.getElementById('editForm').classList.add('hidden');toast('Profil diperbarui pada tampilan demo.')}
+function changePhoto(e){const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{const a=document.getElementById('avatar');a.style.backgroundImage=`url(${reader.result})`;a.style.backgroundSize='cover';a.style.backgroundPosition='center';a.textContent=''};reader.readAsDataURL(f)}
+function toggleNotifications(el){const s=document.getElementById('notifState');s.textContent=s.textContent==='Aktif'?'Nonaktif':'Aktif';s.style.color=s.textContent==='Aktif'?'var(--green)':'var(--muted)'}
+function logout(){showPage('login');document.getElementById('loginPass').value='';toast('Anda keluar dari prototype demo.')}
+renderHistory();
+</script>
+</body>
+</html>
